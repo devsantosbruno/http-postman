@@ -29,12 +29,30 @@ function addUser(newUser) {
     .catch((error) => console.error(error))
 }
 
+function updateUser(updatedUser, id) {
+  fetch(`${url}/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(updatedUser),
+    headers: { 'Content-type': 'application/json; charset=utf-8' }
+  })
+    .then((response) => response.json())
+    .then((data) => (alertApi.textContent = data))
+    .catch((error) => console.error(error))
+}
+
 const newUser = {
   name: 'Bruno Santos',
   avatar: 'https://avatars.githubusercontent.com/u/79421511?v=4',
   city: 'Porto Alegre'
 }
 
+const updatedUser = {
+  name: 'Bruno Alves',
+  avatar: 'https://avatars.githubusercontent.com/u/99999999?v=4',
+  city: 'Pelotas'
+}
+
 getUsers()
 getUser(2)
 addUser(newUser)
+updateUser(updatedUser, 1)
